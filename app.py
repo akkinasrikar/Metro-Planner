@@ -1,12 +1,13 @@
 import streamlit as st
 from tubemap import tubemap
 import time
-
+stations = tubemap.keys()
 st.markdown("<h1 style='text-align: center; color: white;'>Delhi Metro Travel Planner</h1>", unsafe_allow_html=True)
 st.image('./metro.jpg')
 st.markdown("<h2 style='text-align: center; color: white;'>Enter Station Names</h2>", unsafe_allow_html=True)
-m1 = st.text_input("Source")
-m2 = st.text_input("Destination")
+
+m1 = st.selectbox("Source",stations)
+m2 = st.selectbox("Destination",stations)
 
 
 def find_path(graph, start, end, path=[]):
