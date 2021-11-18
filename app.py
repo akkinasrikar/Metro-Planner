@@ -1,5 +1,6 @@
 import streamlit as st
 from tubemap import tubemap
+import pandas as pd
 import time
 stations = tubemap.keys()
 st.markdown("<h1 style='text-align: center; color: white;'>Delhi Metro Travel Planner</h1>", unsafe_allow_html=True)
@@ -9,7 +10,7 @@ st.markdown("<h2 style='text-align: center; color: white;'>Enter Station Names</
 m1 = st.selectbox("Source",stations)
 m2 = st.selectbox("Destination",stations)
 
-
+'''
 def find_path(graph, start, end, path=[]):
   path = path + [start]
   if start == end:
@@ -35,7 +36,7 @@ def find_all_paths(graph, start, end, path=[]):
       for newpath in newpaths:
         paths.append(newpath)
   return paths
-
+'''
         
 def find_shortest_path(graph, start, end, shortestLength=-1, path=[]):
   path = path + [start]
@@ -58,13 +59,16 @@ def find_shortest_path(graph, start, end, shortestLength=-1, path=[]):
 stationFrom=m1
 stationTo=m2
 if(st.button('Search')):
-	st.write("Searching shortest route... This may take a while...")
-	path=find_shortest_path(tubemap,stationFrom,stationTo)
-	my_bar = st.progress(0)
-	for percent_complete in range(100):
-			time.sleep(0.001)
-			my_bar.progress(percent_complete + 1)
+  st.write("Searching shortest route... This may take a while...")
+  path=find_shortest_path(tubemap,stationFrom,stationTo)
+  output_data = pd.DataFrame({"Station Name" : path})
+  output_data.index += 1
+  my_bar = st.progress(0)
+  for percent_complete in range(100):
+      time.sleep(0.001)
+      my_bar.progress(percent_complete + 1)
 
-	st.write("Suggested Route: ")
-	st.write(path)
+  st.write("Suggested Route: ")
+  st.write(output_data)
+
 
