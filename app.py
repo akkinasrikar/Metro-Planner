@@ -10,7 +10,6 @@ st.markdown("<h2 style='text-align: center; color: white;'>Enter Station Names</
 m1 = st.selectbox("Source",stations)
 m2 = st.selectbox("Destination",stations)
 
-'''
 def find_path(graph, start, end, path=[]):
   path = path + [start]
   if start == end:
@@ -36,7 +35,7 @@ def find_all_paths(graph, start, end, path=[]):
       for newpath in newpaths:
         paths.append(newpath)
   return paths
-'''
+
         
 def find_shortest_path(graph, start, end, shortestLength=-1, path=[]):
   path = path + [start]
