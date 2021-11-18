@@ -2,6 +2,7 @@ import streamlit as st
 from tubemap import tubemap
 import pandas as pd
 import time
+
 stations = tubemap.keys()
 st.markdown("<h1 style='text-align: center; color: white;'>Delhi Metro Travel Planner</h1>", unsafe_allow_html=True)
 st.image('./metro.jpg')
@@ -66,8 +67,10 @@ if(st.button('Search')):
   for percent_complete in range(100):
       time.sleep(0.001)
       my_bar.progress(percent_complete + 1)
-
   st.write("Suggested Route: ")
   st.write(output_data)
+  allpaths=find_all_paths(tubemap,stationFrom,stationTo)
+  st.write("Total number of possible paths : ",len(allpaths))
+
 
 
